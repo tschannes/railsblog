@@ -4,15 +4,44 @@ class PostsController < ApplicationController
 	# 	render text: params[:post].inspect
 	# end
 
-	def new
+	# def new
 
+	# end
+
+	# def create
+	# 	@post = Post.new(params[:post].permit(:title, :lead, :text))
+
+	# 	@post.save
+	# 	redirect_to @post
+	# end
+
+	def new
+		@post = Post.new
 	end
 
 	def create
-		@post = Post.new(params[:post].permit(:title, :lead, :text))
+		@post = Post.new(params[:post].permit(:title, :text))
 
-		@post.save
-		redirect_to @post
+		if @post.save
+			redirect_to @post
+		else
+			# send the post object back to the posts#new action
+			render 'new'
+		end
+	end
+
+	def edit
+		@post = Post.find(params[:id])
+	end
+
+	def update
+		@post = Post.find(params[:id])
+
+		if @post.update(params[:post].permit(:title, :lead, :text))
+			redirect_to @post
+		else
+			render 'edit'
+		end
 	end
 
 	def show
