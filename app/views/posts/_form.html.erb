@@ -1,31 +1,37 @@
 <%= form_for @post do |f| %>
-  <% if @post.errors.any? %>
-  <div id="errorExplanation">
-    <h2><%= pluralize(@post.errors.count, "error") %> prohibited
-      this post from being saved:</h2>
-    <ul>
-    <% @post.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+  <div class="pure-form pure-form-stacked">
+    <% if @post.errors.any? %>
+    <div id="errorExplanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited
+        this post from being saved:</h2>
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
     <% end %>
-    </ul>
-  </div>
-  <% end %>
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
- 
-  <p>
-    <%= f.label :lead %><br>
-    <%= f.text_field :lead %>
-  </p>
+    <div class="pure-g-r">
+      
+      <p class="pure-u-1-2">
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+      </p>
+     
+      <p class="pure-u-1-2">
+        <%= f.label :lead %>
+        <%= f.text_field :lead %>
+      </p>
 
-  <p>
-    <%= f.label :text %><br>
-    <%= f.text_area :text %>
-  </p>
- 
-  <p>
-    <%= f.submit %>
-  </p>
+      <p class="pure-u-1-2">
+        <%= f.label :text %>
+        <%= f.text_area :text %>
+      </p>
+     
+      <p>
+        <%= f.submit :class => "pure-button notice" %>
+      </p>
+    </div>
+  </div>
 <% end %>
+
